@@ -17,7 +17,7 @@ if (window.location.href.indexOf("event") > -1) {
         createEl("h1", {class: "card-title"}, currentEvent.title || ""),
         createEl("h2", {class: "text-muted"}, currentEvent.subtitle || ""),
         createEl("p", {class: "card-text mt-3"}, currentEvent.description || createLoremIpsum(100)),
-        createEl("a", {class: "btn btn-primary", href: "tickets.html"}, "Buy Tickets")
+        createEl("a", {class: "btn btn-danger", href: "https://jimsburgers.com/"}, "Jim's Burgers")
       )
     ),
     

@@ -95,21 +95,21 @@ $(document).ready(function() {
       
       const containerEl1 = createEl("div", {class: "container mt-5"}, 
       createEl("div", {class: "card mb-5"}, 
-          createEl("h5", {class: "card-header"}, "Day 1"),
+          createEl("h5", {class: "card-header"}, ""),
           ...createCards(events.slice(0,3))
       )
       )
 
       const containerEl2 = createEl("div", {class: "container"}, 
       createEl("div", {class: "card mb-5"}, 
-          createEl("h5", {class: "card-header"}, "Day 2"),
+          createEl("h5", {class: "card-header"}, ""),
           ...createCards(events.slice(3,6))
       )
       )
 
       const containerEl3 = createEl("div", {class: "container"}, 
       createEl("div", {class: "card mb-5"}, 
-          createEl("h5", {class: "card-header"}, "Day 3"),
+          createEl("h5", {class: "card-header"}, ""),
           ...createCards(events.slice(6,9))
       )
       )
