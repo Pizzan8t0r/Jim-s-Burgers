@@ -9,14 +9,14 @@ $(document).ready(function() {
       title: "The Original Jim's Burgers #1",
       subtitle: "Check out our Menu!",
       img: img1,
-      btnText: "View Schedule",
+      btnText: "Menu",
       btnUrl: "schedule.html"
     },
     {
       title: "Cocinamos con Cariño!",
       subtitle: "We Cook with Love!",
       img: img2,
-      btnText: "Purchase Tickets",
+      btnText: "About Us",
       btnUrl: "tickets.html"
     },
   ];
