@@ -55,11 +55,13 @@ Because the browser's processing speeds are beyond our control, we must stick to
 
 We have an interactive tree map in the browser. We can click on each part to reveal the bundle sizes. Currently we have a single bundle being loaded to the browser in main.bundle.js. This means all the JavaScript assets need to be processed in order for any page to load. Large JavaScript files will tie up the browser's resources and processing power, delaying the Time to Interactive (TTI). We have shown that with minimal set up, we can use webpack out of the box and still get some performance gains. In the next step, we will code split the JavaScript into different modules or chunks
 ![400-Bundle-Analyze-Before-Split](https://user-images.githubusercontent.com/131811220/235533628-79593b0f-27cf-4c89-b01f-b3193563b752.jpg)
+
 ## Code split the app to separate concerns
-I'll be using entry-point splitting to create multiple entry points and separate our JavaScript into distinct modules or files, which we will then connect in accordance to their dependencies. webpack tracks the dependencies of the JavaScript modules with a dependency graph. A script file can call multiple modules that can then call other modules, which forms a chain of dependencies. webpack can offload this task by creating bundles based on the dependency graph. webpack starts at the entry point and tracks each dependency and bundles this code together. Each entry point becomes a bundle based on the dependency graph and its interlinked modules
+I'll be using entry-point splitting to create multiple entry points and separate our JavaScript into distinct modules or files, which will then connect in accordance to their dependencies. webpack tracks the dependencies of the JavaScript modules with a dependency graph. A script file can call multiple modules that can then call other modules, which forms a chain of dependencies. webpack can offload this task by creating bundles based on the dependency graph. webpack starts at the entry point and tracks each dependency and bundles this code together. Each entry point becomes a bundle based on the dependency graph and its interlinked modules.
 ![500-Dependency-graph](https://user-images.githubusercontent.com/131811220/235534187-883f3d9e-4f9f-49c3-859f-fb12c5777459.png)
+
 When creating multiple entry points, it is especially advantageous to split code based on its responsibility for different page loads. Then we can load each bundle on demand when that particular page is being loaded. This alone will make the JavaScript bundle size for each page just a fraction of the previous size. Let's try and organize our objects and functions into new groupings that will form our modules.
-Simply based on the conditional statements, we can see DOM manipulation specific for each webpage. Separating the JavaScript assets based on the webpages is a great strategy and will allow lazy loading, because only one page can load at a time. Let's create three new JavaScript files located in the js folder in the assets folder and move the corresponding conditional statements and their respective code blocks from the script.js file to the appropriate files
+Simply based on the conditional statements, we can see DOM manipulation specific for each webpage. Separating the JavaScript assets based on the webpages is a great strategy and will allow lazy loading, because only one page can load at a time. Let's create three new JavaScript files located in the js folder in the assets folder and move the corresponding conditional statements and their respective code blocks from the script.js file to the appropriate files.
 ## Modularization
 Bundling our JavaScript assets can be advantageous from a performance perspective, it is also important to note why encapsulation, or separating our code based on purpose or responsibility, is also a best practice. Here are the reasons why encapsulation improves performance:
 
@@ -68,6 +70,7 @@ Encapsulating the code into modules creates separate private silos of code. This
 Modules can be reused, keeping the codebase DRY.
 
 Fixing bugs, adding features, and code maintenance are much easier in a module system due to the organization of the codebase.
+
 ### Service Workers
 A service worker allows us to control how network requests from the client are handled. This means that if we make a request for an image that's hosted on a server, we could use the service worker to respond with its own custom response. This could be an image or a message to the user. We could also potentially use the service worker to communicate when a user's connection is offline.
 
@@ -89,6 +92,7 @@ Service workers have a lifecycle consisting of the following three main parts:
     Waiting/Idle: The updated service worker waits until the existing service worker is no longer controlling clients. This step is often skipped with a function, because previous service workers rarely exist past a new service worker's installation.
 
 ![100-service-lifecycle](https://user-images.githubusercontent.com/131811220/235535380-475c3666-8eec-4e20-a214-c648bba94c7a.png)
+
 To use service workers in production, the application MUST be hosted on a web server using HTTPS. The browser makes an exception for localhost in development if you have an Express.js server, because you can use Chrome DevTools to test the service worker.
 Service workers do NOT need webpack to work. Because the application is already using webpack, we'll only need to prepend the names of the JavaScript files to cache in the dist/ folder. Other than that, the steps to add a service worker to an application without webpack are exactly the same. 
 Service workers run before the window object has even been created. So instead we use the self keyword to instantiate listeners on the service worker. The context of self here refers to the service worker object.
