@@ -59,3 +59,12 @@ I'll be using entry-point splitting to create multiple entry points and separate
 ![500-Dependency-graph](https://user-images.githubusercontent.com/131811220/235534187-883f3d9e-4f9f-49c3-859f-fb12c5777459.png)
 When creating multiple entry points, it is especially advantageous to split code based on its responsibility for different page loads. Then we can load each bundle on demand when that particular page is being loaded. This alone will make the JavaScript bundle size for each page just a fraction of the previous size. Let's try and organize our objects and functions into new groupings that will form our modules.
 Simply based on the conditional statements, we can see DOM manipulation specific for each webpage. Separating the JavaScript assets based on the webpages is a great strategy and will allow lazy loading, because only one page can load at a time. Let's create three new JavaScript files located in the js folder in the assets folder and move the corresponding conditional statements and their respective code blocks from the script.js file to the appropriate files
+## Modularization
+bundling our JavaScript assets can be advantageous from a performance perspective, it is also important to note why encapsulation, or separating our code based on purpose or responsibility, is also a best practice. Here are the reasons why encapsulation improves performance:
+
+Encapsulating the code into modules creates separate private silos of code. This can protect the variables within the module by creating a local private scope that cannot be affected by outside changes.
+
+Modules can be reused, keeping the codebase DRY.
+
+Fixing bugs, adding features, and code maintenance are much easier in a module system due to the organization of the codebase.
+
