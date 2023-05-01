@@ -67,4 +67,25 @@ Encapsulating the code into modules creates separate private silos of code. This
 Modules can be reused, keeping the codebase DRY.
 
 Fixing bugs, adding features, and code maintenance are much easier in a module system due to the organization of the codebase.
+### Service Workers
+A service worker allows us to control how network requests from the client are handled. This means that if we make a request for an image that's hosted on a server, we could use the service worker to respond with its own custom response. This could be an image or a message to the user. We could also potentially use the service worker to communicate when a user's connection is offline.
+
+Service workers use the browser's Cache API to store assets. Like localStorage and IndexedDB, the browser's Cache API can store data. But unlike localStorage, the Cache API can store all of the front-end assets, like images, JavaScript, HTML, CSS, and API responses.
+A service worker can also intercept requests that the browser makes before the request reaches a server. The service worker can then send back the cached files instead of the files requested from the server. This ability is particularly useful if the user has little or no connection to the internet, because it circumvents a "fail to connect" or timeout response.
+
+
+Certain functionality can only be implemented from within a service worker, like caching assets to make the application useable without an internet connection or notifying the browser that the application should be installable.
+
+Service workers also use a separate thread. Recall from Node.js that a thread is an independent set of values for the processor that controls the order in which tasks are executed. Think of this as another JavaScript application running at the same time as the main application, with the ability to communicate and pass data between threads.
+
+Service workers have a lifecycle consisting of the following three main parts:
+
+    Installation: The service worker creates a version-specific cache.
+
+    Activation: This event fires after the service worker has been installed and any previously installed service worker has been removed.
+
+    Waiting/Idle: The updated service worker waits until the existing service worker is no longer controlling clients. This step is often skipped with a function, because previous service workers rarely exist past a new service worker's installation.
+
+![100-service-lifecycle](https://user-images.githubusercontent.com/131811220/235535380-475c3666-8eec-4e20-a214-c648bba94c7a.png)
+To use service workers in production, the application MUST be hosted on a web server using HTTPS. The browser makes an exception for localhost in development if you have an Express.js server, because you can use Chrome DevTools to test the service worker.
 
