@@ -96,8 +96,12 @@ Service workers have a lifecycle consisting of the following three main parts:
 ![100-service-lifecycle](https://user-images.githubusercontent.com/131811220/235535380-475c3666-8eec-4e20-a214-c648bba94c7a.png)
 
 To use service workers in production, the application MUST be hosted on a web server using HTTPS. The browser makes an exception for localhost in development if you have an Express.js server, because you can use Chrome DevTools to test the service worker.
-Service workers do NOT need webpack to work. Because the application is already using webpack, we'll only need to prepend the names of the JavaScript files to cache in the dist/ folder. Other than that, the steps to add a service worker to an application without webpack are exactly the same. 
+Service workers do NOT need webpack to work. Because the application is already using webpack, we'll only need to prepend the names of the JavaScript files to cache in the dist/ folder. Other than that, the steps to add a service worker to an application without webpack are exactly the same.
+#####
 Service workers run before the window object has even been created. So instead we use the self keyword to instantiate listeners on the service worker. The context of self here refers to the service worker object.
+#####
 Service workers allow us to cache data, including HTML, CSS and JavaScript, so that the user won't have to re-download it when navigating back to the page. This caching gives our application offline functionality, this works because after an initial visit, the required assets are downloaded to the user's device, allowing page interaction without a connection.
+######
 Service workers allow us to cache data, including HTML, CSS and JavaScript, so that the user won't have to re-download it when navigating back to the page. This caching gives our application offline functionality. As you learned, this works because after an initial visit, the required assets are downloaded to the user's device, allowing page interaction without a connection. 
+#####
 PWA, which is short for Progressive Web Application, describes a web app that resembles a native mobile app, and which maintains its reliability, speed, and user engagement even when there is no internet or cell service. Recently, PWAs have seen a huge rise in popularity. In an age of smart devices, phones are one of the primary modalities of content consumption. Therefore, it has become increasingly important that websites are not only mobile-responsive, but optimized for mobile and installable on the home screen of a phone.
