@@ -48,8 +48,9 @@ Another useful technique that can speed up the initial render of the webpage is 
 ## Analying Browser Resource Allocation
 webpack's main objective is to reduce the processing time needed by the browser to render the webpage. This will improve the overall Time to Interactive (TTI) as well as the First Meaningful Paint (FMP). webpack's main approach is to bundle the JavaScript assets. By splitting the code into modules, webpack can bundle them into bite-sized chunks that can be loaded on demand. This will limit the browser's valuable processing power to focus on the critical chunks for the page load
 ![Diagram-Code-Split--](https://user-images.githubusercontent.com/131811220/235532460-1b37d991-85f3-4cd3-a32d-3022d5f18b15.jpg)
+
 The time to download the files was the same because they are both the same size. In the initial transmission step, shrinking the payload through minification and uglification of the code will reduce the transmission time.
-In the next step, after the files have been received, there is a big difference in the amount of time the browser needs to process the files—the image only took 0.092 seconds, while it took almost 3.5 seconds longer for the JavaScript file because it needed to be parsed and compiled before the browser can execute it. In other words, it takes a long time to not only translate the code from what people can read into something the browser can understand (i.e., machine code), but also to execute the code itself.
+After the files have been received, there is a big difference in the amount of time the browser needs to process the files—the image only took 0.092 seconds, while it took almost 3.5 seconds longer for the JavaScript file because it needed to be parsed and compiled before the browser can execute it. In other words, it takes a long time to not only translate the code from what people can read into something the browser can understand (i.e., machine code), but also to execute the code itself.
 Because the browser's processing speeds are beyond our control, we must stick to ways to optimize our code for browser loading. webpack's ingenious method is to separate critical JavaScript from the non-critical code that can be lazily loaded by the browser
 ![300-image-vs-javascript](https://user-images.githubusercontent.com/131811220/235532867-4b6aa2d7-b13f-4aba-b9e9-ea9447f185fa.jpg)
 
@@ -62,6 +63,7 @@ I'll be using entry-point splitting to create multiple entry points and separate
 
 When creating multiple entry points, it is especially advantageous to split code based on its responsibility for different page loads. Then we can load each bundle on demand when that particular page is being loaded. This alone will make the JavaScript bundle size for each page just a fraction of the previous size. Let's try and organize our objects and functions into new groupings that will form our modules.
 Simply based on the conditional statements, we can see DOM manipulation specific for each webpage. Separating the JavaScript assets based on the webpages is a great strategy and will allow lazy loading, because only one page can load at a time. Let's create three new JavaScript files located in the js folder in the assets folder and move the corresponding conditional statements and their respective code blocks from the script.js file to the appropriate files.
+
 ## Modularization
 Bundling our JavaScript assets can be advantageous from a performance perspective, it is also important to note why encapsulation, or separating our code based on purpose or responsibility, is also a best practice. Here are the reasons why encapsulation improves performance:
 
