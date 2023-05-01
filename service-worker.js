@@ -56,7 +56,7 @@ self.addEventListener('fetch', function (e) {
         let cacheKeeplist = keyList.filter(function(key) {
             // any key with the index value that matches the app prefix will be used to be inserted to the keep list 
           return key.indexOf(APP_PREFIX);
-        });
+        })
         // add current cache name to keeplist
         //we set up CACHE_NAME as a global constant to help keep track of which cache to use
         // this will add the current cache name to the keep list 
