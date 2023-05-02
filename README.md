@@ -105,3 +105,5 @@ Service workers allow us to cache data, including HTML, CSS and JavaScript, so t
 Service workers allow us to cache data, including HTML, CSS and JavaScript, so that the user won't have to re-download it when navigating back to the page. This caching gives our application offline functionality. As you learned, this works because after an initial visit, the required assets are downloaded to the user's device, allowing page interaction without a connection. 
 #####
 PWA, which is short for Progressive Web Application, describes a web app that resembles a native mobile app, and which maintains its reliability, speed, and user engagement even when there is no internet or cell service. Recently, PWAs have seen a huge rise in popularity. In an age of smart devices, phones are one of the primary modalities of content consumption. Therefore, it has become increasingly important that websites are not only mobile-responsive, but optimized for mobile and installable on the home screen of a phone.
+## Deployment
+https://pizzan8t0r.github.io/Jim-s-Burgers/
